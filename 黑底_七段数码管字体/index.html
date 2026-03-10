@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPT 倒计时</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 顶部标题区域 -->
+        <div class="header-section">
+            <div class="title">TIMER</div>
+            <button id="close-btn" class="window-control">×</button>
+        </div>
+
+        <!-- 时间显示区域 -->
+        <div class="timer-section">
+            <div class="timer-display" id="timer-display">00:00</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- 控制按钮区域 -->
+        <div class="control-section">
+            <button id="play-btn" class="icon-btn play-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+            <button id="pause-btn" class="icon-btn pause-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+            </button>
+            <button id="reset-btn" class="icon-btn reset-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- 时间预设区域 -->
+        <div class="preset-section">
+            <div class="preset-buttons">
+                <button class="preset-btn" data-time="1">01</button>
+                <button class="preset-btn" data-time="3">03</button>
+                <button class="preset-btn" data-time="5">05</button>
+                <button class="preset-btn" data-time="8">08</button>
+                <button class="preset-btn" data-time="15">15</button>
+            </div>
+            <div class="custom-input-section">
+                <input type="number" id="custom-input" class="custom-input" placeholder="分钟" min="1" step="1">
+                <button id="set-custom-btn" class="set-custom-btn">设置</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示音 -->
+    <audio id="alarm-sound" src="didi.wav" preload="auto"></audio>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>

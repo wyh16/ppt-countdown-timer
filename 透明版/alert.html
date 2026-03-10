@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间提醒</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            -webkit-app-region: no-drag;
+        }
+
+        .alert-content {
+            text-align: center;
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .alert-text {
+            font-size: 120px;
+            font-weight: 800;
+            color: #ffeb3b;
+            text-shadow: 0 0 30px rgba(255, 235, 59, 0.8), 0 0 60px rgba(255, 235, 59, 0.6), 6px 6px 12px rgba(0, 0, 0, 0.9);
+            margin-bottom: 50px;
+            letter-spacing: 8px;
+        }
+
+        .alert-close {
+            padding: 20px 60px;
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.95), rgba(211, 47, 47, 0.95));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: 600;
+            cursor: pointer;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.2s;
+            -webkit-app-region: no-drag;
+        }
+
+        .alert-close:hover {
+            background: linear-gradient(135deg, rgba(250, 82, 70, 1), rgba(229, 57, 53, 1));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .alert-close:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="alert-content">
+        <div class="alert-text">时间到了</div>
+        <button class="alert-close" id="alert-close">关闭</button>
+    </div>
+
+    <audio id="alarm-sound" src="didi.wav" preload="auto"></audio>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+        const alertClose = document.getElementById('alert-close');
+        const alarmSound = document.getElementById('alarm-sound');
+
+        function playAlarm() {
+            try {
+                alarmSound.currentTime = 0;
+                alarmSound.volume = 1.0;
+                alarmSound.play().catch(err => {
+                    console.error('无法播放提示音:', err);
+                });
+            } catch (err) {
+                console.error('无法播放提示音:', err);
+            }
+        }
+
+        function stopAlarm() {
+            try {
+                alarmSound.pause();
+                alarmSound.currentTime = 0;
+            } catch (err) {
+                console.error('停止提示音失败:', err);
+            }
+        }
+
+        alertClose.addEventListener('click', () => {
+            stopAlarm();
+            ipcRenderer.send('hide-alert');
+        });
+
+        window.addEventListener('load', () => {
+            playAlarm();
+        });
+    </script>
+</body>
+
+</html>

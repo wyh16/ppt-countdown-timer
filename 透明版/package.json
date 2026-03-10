@@ -1,0 +1,19 @@
+{
+  "name": "ppt-countdown-timer",
+  "version": "1.0.0",
+  "description": "A minimal always-on-top countdown timer for PPT presentations",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "timer",
+    "electron",
+    "ppt"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^34.2.0"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "ppt-countdown-timer",
+  "version": "1.0.0",
+  "description": "A minimal always-on-top countdown timer for PPT presentations",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.ppt.timer",
+    "productName": "PPT Timer",
+    "directories": {
+      "output": "dist"
+    },
+    "compression": "maximum",
+    "files": [
+      "index.html",
+      "alert.html",
+      "style.css",
+      "renderer.js",
+      "main.js",
+      "didi.wav",
+      "7-segments/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "deleteAppDataOnUninstall": true
+    }
+  },
+  "keywords": [
+    "timer",
+    "electron",
+    "ppt"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^34.2.0",
+    "electron-builder": "^24.13.3"
+  }
+}
