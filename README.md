@@ -31,7 +31,6 @@
 **特点**：
 - 🪟 **完全透明背景**：不影响 PPT 演示效果
 - 🎯 **简洁设计**：专注于功能，界面简洁
-- 📏 **小巧轻便**：占用资源少
 - 🔊 **声音提醒**：时间结束时播放提示音
 
 **适合场景**：
@@ -141,8 +140,8 @@ ppt-countdown-timer/
 
 ## 许可证
 
-ISC
+MIT License - 详见 [LICENSE](LICENSE) 文件
 
 ## 作者
 
-PPT Timer Team
+[wyh16](https://github.com/wyh16)
